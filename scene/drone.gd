@@ -43,6 +43,7 @@ func explode():
 	is_exploding = true	
 	
 	speed = 0
+	$AnimationPlayer.stop()
 	$ExplosionSprite.show()
 	$AnimatedSprite2D.hide()
 	$AnimationPlayer.play("explode")

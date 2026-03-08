@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://cgh7234wked4l" path="res://graphics/tilesets/walls.png" id="3_7g0b6"]
 [ext_resource type="Texture2D" uid="uid://c7v0ifpdabs2i" path="res://graphics/tilesets/subway.png" id="3_dmi07"]
 [ext_resource type="PackedScene" uid="uid://bnp1ccbo2qxhd" path="res://scene/drone.tscn" id="5_ukt71"]
+[ext_resource type="Texture2D" uid="uid://6j2he24a4uda" path="res://graphics/lights/l3.png" id="6_ismto"]
+[ext_resource type="Texture2D" uid="uid://cbn5tc4c0ckcp" path="res://graphics/lights/l2.png" id="7_bddx0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dmi07"]
 texture = ExtResource("3_dmi07")
@@ -2747,6 +2749,12 @@ texture = ExtResource("3_dmi07")
 [sub_resource type="TileSet" id="TileSet_u2b8d"]
 sources/0 = SubResource("TileSetAtlasSource_bddx0")
 
+[sub_resource type="Gradient" id="Gradient_ukt71"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ismto"]
+gradient = SubResource("Gradient_ukt71")
+fill_from = Vector2(0, 1)
+
 [node name="Level" type="Node2D" unique_id=865585938]
 script = ExtResource("1_3bu56")
 metadata/_edit_vertical_guides_ = [642.0, 343.0, 370.0]
@@ -2778,80 +2786,28 @@ position = Vector2(139, 659)
 
 [node name="Drone" parent="Entities" unique_id=579136023 instance=ExtResource("5_ukt71")]
 position = Vector2(500, 595)
-speed = 2000
-
-[node name="Drone8" parent="Entities" unique_id=1284479074 instance=ExtResource("5_ukt71")]
-position = Vector2(517, 612)
-speed = 2000
-
-[node name="Drone9" parent="Entities" unique_id=1306337850 instance=ExtResource("5_ukt71")]
-position = Vector2(526, 632)
-speed = 2000
-
-[node name="Drone10" parent="Entities" unique_id=1177492021 instance=ExtResource("5_ukt71")]
-position = Vector2(519, 653)
-speed = 2000
-
-[node name="Drone11" parent="Entities" unique_id=1981762610 instance=ExtResource("5_ukt71")]
-position = Vector2(500, 676)
-speed = 2000
-
-[node name="Drone12" parent="Entities" unique_id=7107402 instance=ExtResource("5_ukt71")]
-position = Vector2(480, 686)
-speed = 2000
-
-[node name="Drone13" parent="Entities" unique_id=1453405206 instance=ExtResource("5_ukt71")]
-position = Vector2(459, 696)
-speed = 2000
-
-[node name="Drone14" parent="Entities" unique_id=1210514382 instance=ExtResource("5_ukt71")]
-position = Vector2(437, 701)
-speed = 2000
-
-[node name="Drone15" parent="Entities" unique_id=551556889 instance=ExtResource("5_ukt71")]
-position = Vector2(418, 710)
-speed = 2000
-
-[node name="Drone16" parent="Entities" unique_id=1390485951 instance=ExtResource("5_ukt71")]
-position = Vector2(394, 717)
-speed = 2000
-
-[node name="Drone17" parent="Entities" unique_id=287385135 instance=ExtResource("5_ukt71")]
-position = Vector2(394, 717)
-speed = 2000
-
-[node name="Drone18" parent="Entities" unique_id=1422673021 instance=ExtResource("5_ukt71")]
-position = Vector2(374, 715)
-speed = 2000
-
-[node name="Drone19" parent="Entities" unique_id=884947754 instance=ExtResource("5_ukt71")]
-position = Vector2(331, 710)
-speed = 2000
-
-[node name="Drone2" parent="Entities" unique_id=463173909 instance=ExtResource("5_ukt71")]
-position = Vector2(369, 591)
-speed = 2000
-
-[node name="Drone3" parent="Entities" unique_id=1783022812 instance=ExtResource("5_ukt71")]
-position = Vector2(391, 600)
-speed = 2000
-
-[node name="Drone4" parent="Entities" unique_id=71474123 instance=ExtResource("5_ukt71")]
-position = Vector2(414, 597)
-speed = 2000
-
-[node name="Drone5" parent="Entities" unique_id=1600505666 instance=ExtResource("5_ukt71")]
-position = Vector2(438, 616)
-speed = 2000
-
-[node name="Drone6" parent="Entities" unique_id=69342088 instance=ExtResource("5_ukt71")]
-position = Vector2(467, 613)
-speed = 2000
-
-[node name="Drone7" parent="Entities" unique_id=1615278964 instance=ExtResource("5_ukt71")]
-position = Vector2(367, 611)
-speed = 2000
 
 [node name="Bullets" type="Node2D" parent="." unique_id=882252205]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1020079845]
+position = Vector2(188, 589)
+color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+blend_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1444639374]
+position = Vector2(544.5, 622)
+scale = Vector2(1.7968757, 1.5624994)
+energy = 0.25
+texture = SubResource("GradientTexture2D_ismto")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1022827919]
+position = Vector2(192, 600)
+energy = 0.6
+texture = ExtResource("6_ismto")
+
+[node name="PointLight2D3" type="PointLight2D" parent="." unique_id=1063086460]
+position = Vector2(616, 584)
+energy = 0.6
+texture = ExtResource("7_bddx0")
 
 [connection signal="shoot" from="Entities/Player" to="." method="_on_player_shoot"]
