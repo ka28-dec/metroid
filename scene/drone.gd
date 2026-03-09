@@ -8,6 +8,11 @@ var is_exploding := false
 var chain_distance = 40
 var chain_delay = 0.1
 
+
+func _ready() -> void:
+	$AnimatedSprite2D.material = $AnimatedSprite2D.material.duplicate()
+
+
 func _physics_process(delta: float) -> void:
 	if player:
 		direction = position.direction_to(player.position)
@@ -32,9 +37,12 @@ func hit():
 	if health <= 0:
 		explode()
 		return
+	# ヒット時のアニメーション
 	var tween := get_tree().create_tween()
-	tween.tween_property($AnimatedSprite2D, "modulate", Color.RED, 0.05)
-	tween.tween_property($AnimatedSprite2D, "modulate", Color.WHITE, 0.05)
+	#tween.tween_property($AnimatedSprite2D, "modulate", Color.RED, 0.05)
+	#tween.tween_property($AnimatedSprite2D, "modulate", Color.WHITE, 0.05)
+	tween.tween_property($AnimatedSprite2D.material, "shader_parameter/Progress", 0.2, 0.06)
+	tween.tween_property($AnimatedSprite2D.material, "shader_parameter/Progress", 1, 0.06)
 
 
 func explode():
@@ -47,6 +55,7 @@ func explode():
 	$ExplosionSprite.show()
 	$AnimatedSprite2D.hide()
 	$AnimationPlayer.play("explode")
+	$ExplosionSE.play()
 	await $AnimationPlayer.animation_finished
 
 	queue_free()

@@ -5,6 +5,7 @@ var direction := Vector2.ZERO
 
 
 func _ready() -> void:
+	$ShootSE.play()
 	var tween = get_tree().create_tween()
 	tween.tween_property($Sprite2D, "scale", Vector2.ONE, 0.1).from(Vector2.ZERO)
 

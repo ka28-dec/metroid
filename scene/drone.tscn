@@ -2,8 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://vyr0ks75oxum" path="res://graphics/characters/drone.png" id="1_8wg5q"]
 [ext_resource type="Script" uid="uid://dvkh13lco1t55" path="res://scene/drone.gd" id="1_jxxn5"]
+[ext_resource type="Shader" uid="uid://dsfbi4ck73f2h" path="res://scene/shaders/drone.tres" id="2_stha5"]
 [ext_resource type="Texture2D" uid="uid://bav7n447bnsa5" path="res://graphics/fire/explosion.png" id="3_il87p"]
 [ext_resource type="Texture2D" uid="uid://dijla4pisrrw8" path="res://graphics/lights/main.png" id="4_bneum"]
+[ext_resource type="AudioStream" uid="uid://dtnqyh7corvdx" path="res://audio/explosion.wav" id="6_1yirn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yirn"]
+shader = ExtResource("2_stha5")
+shader_parameter/Color = Color(1, 1, 1, 1)
+shader_parameter/Progress = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jxxn5"]
 atlas = ExtResource("1_8wg5q")
@@ -112,7 +119,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.06666667),
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -136,6 +143,7 @@ collision_mask = 10
 script = ExtResource("1_jxxn5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2024577942]
+material = SubResource("ShaderMaterial_1yirn")
 sprite_frames = SubResource("SpriteFrames_1yirn")
 autoplay = "default"
 frame_progress = 0.7656379
@@ -178,6 +186,9 @@ scale = Vector2(5.5, 5.5000005)
 color = Color(0.8998182, 0, 0.0045681857, 1)
 texture = ExtResource("4_bneum")
 texture_scale = 0.01
+
+[node name="ExplosionSE" type="AudioStreamPlayer2D" parent="." unique_id=195610046]
+stream = ExtResource("6_1yirn")
 
 [connection signal="body_entered" from="DitectionArea" to="." method="_on_ditection_area_body_entered"]
 [connection signal="body_exited" from="DitectionArea" to="." method="_on_ditection_area_body_exited"]
